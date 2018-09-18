@@ -1,4 +1,4 @@
-podTemplate(label: 'master',
+podTemplate(label: 'mypod',
     volumes: [
         hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
         secretVolume(secretName: 'registry-account', mountPath: '/var/run/secrets/registry-account'),
@@ -9,7 +9,7 @@ podTemplate(label: 'master',
         containerTemplate(name: 'docker' , image: 'docker:17.06.1-ce', ttyEnabled: true, command: 'cat')
   ]) {
 
-    node('master') {
+    node('mypod') {
         checkout scm
         container('docker') {
             stage('Build Docker Image') {
